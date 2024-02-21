@@ -1,3 +1,4 @@
 # Veritas-CSI-S3
 
-![Spec](/spec/spec.md)
+## CSI Specification
+ - [Spec](/spec/spec.md)
