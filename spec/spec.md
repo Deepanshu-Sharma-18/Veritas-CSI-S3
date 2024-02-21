@@ -19,18 +19,16 @@ The objective of this CSI specification is to define a standard interface for us
 
 ## Goals in MVP
 
-Enable dynamic provisioning and deprovisioning of a volume that uses a local file-system as a cache for S3 object storage.
-Support attaching and detaching volumes from nodes.
-Mount and unmount volumes from nodes.
-Sync data between the local cache and the S3 backend.
-Configure the caching mode (write-back or write-through).
-Optionally, integrate AI/ML models for predictive caching.
+- Enable static provisioning and deprovisioning of a volume that uses a local file-system as a cache for S3 object storage.
+- Support attaching and detaching volumes from nodes.
+- Mount and unmount volumes from nodes.
+- Sync data between the local cache and the S3 backend.
+- Configure the caching mode (write-back or write-through).
+- Optionally, integrate AI/ML models for predictive caching.
 
 # CSI Plugin Capabilities
 
 The S3 Object Storage Cache CSI Plugin MUST expose the following capabilities:
-
-- **Dynamic** **Provisioning**: Enable dynamic provisioning of cache volumes to store S3 object data.
 
 - **Volume Expansion**: Support for expanding the size of cache volumes to accommodate growing data.
 
@@ -112,7 +110,8 @@ The S3 Object Storage Cache CSI Plugin MUST implement a cache synchronization me
 - **Write-Back Mode**: In this mode, changes made to cached data are first written to the local cache and then asynchronously synchronized with the S3 object storage in the background. This mode provides low-latency access to data and reduces the number of requests sent to the S3 storage, thereby optimizing performance.
 
 - **Write-Through Mode**: In this mode, every write operation is immediately propagated to both the local cache and the S3 object storage synchronously. While this ensures data consistency between the cache and the storage, it may introduce higher latency for write operations due to network overhead.
-Predictive Caching (Optional):
+
+**Predictive Caching** (Optional):
 Optionally, the S3 Object Storage Cache CSI Plugin can integrate AI/ML capabilities for predictive caching. This involves analyzing past access patterns or workload characteristics using machine learning algorithms to predict which data objects are likely to be accessed in the future. Predictive caching can optimize cache utilization by proactively caching frequently accessed or anticipated data, thereby further improving performance and reducing latency.
 
 ## Example
